@@ -1,0 +1,56 @@
+import React, { useState } from 'react'
+import Form from 'react-bootstrap/Form';
+import Accordian from './Accordian';
+function Home() {
+
+  const [accord, setAccord]=useState({
+    header:"",
+    discription:""
+  })
+ 
+  // const [data,setData]=useState([])
+  const handleChange=(e)=>{
+    console.log(e.target.value)
+    const {name,value}=e.target
+    setAccord((prev)=>({...prev,[name]:value}))
+  }
+
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    // setAccord({...accord,[e.target.name]:e.target.value})
+    // console.log(accord)
+  }
+
+  return (
+    <div>
+      <div className='container col-10 border d-flex justify-content-center mt-5'>
+        <div className='col-4'>
+
+          <h1>Add Section</h1>
+           <Form onSubmit={handleSubmit}>
+           {/* <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Section Header</Form.Label>
+              <Form.Control type="text" name='header' placeholder="Enter Your Section" value={accord.header} onChange={handleChange} />
+            </Form.Group> */}
+            <input type='text' onChange={handleChange} name='header' value={accord.header}/>
+            <input type='text' onChange={handleChange} name='discription' value={accord.discription}/>
+
+
+            {/* <Form.Group controlId="exampleForm.ControlTextarea1">
+              <Form.Label>Section Details</Form.Label>
+              <Form.Control as="textarea" rows={3} onChange={handleChange} name='discription'value={accord.discription} />
+            </Form.Group> */}
+            {/* <div className="d-grid gap-2 col-8 mx-auto mt-4 mb-5"> */}
+              <button className="btn btn-primary" type="submit">Button</button>
+            {/* </div> */}
+          </Form>
+        </div>
+        <div className='col-6 ml-5' style={{margin:"0 0 0 50px"}}>
+          <Accordian  storeData={accord}/>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Home

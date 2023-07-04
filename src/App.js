@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { RouterProvider } from "react-router";
+import Formpract from "./Formpract";
+import Project2a from "./project2A/Main";
+import Project2B from "./project2B/Project2B";
+import Accordian from "./project3/Accordian";
+import Project3 from "./project3/Home"
+import Check from "./project3/check";
+import Project4 from "./project4/Home"
+import Mainproj5 from "./project5/Mainproj5";
+import { router } from "./project5/router/Router";
+import Main from "./prctice/Main";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <Project2a/> */}
+      {/* <Project2B/> */}
+      {/* <Project3/> */}
+    {/* <Formpract/> */}
+    {/* <Project4/> */}
+    <Mainproj5/>
+ 
+    {/* <Main/> */}
     </div>
   );
 }
