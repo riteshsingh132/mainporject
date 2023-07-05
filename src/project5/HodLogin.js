@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import ApplyLeave from './ApplyLeave'
 import Dashbord from './Dashbord'
 import HodDashboard from './HodDashboard'
+import { useNavigate } from 'react-router'
 
 function HodLogin() {
 
@@ -26,9 +27,14 @@ const [newdata,setnewData]=useState([])
     const handleSubmit=(e)=>{
         e.preventDefault()
         setnewData([...newdata,data])
-        localStorage.setItem("user",JSON.stringify([...newdata,data]))
-        setData(signupdetail)
-    }
+        if(isSignup && true){
+            localStorage.setItem("user",JSON.stringify([...newdata,data]))
+            setData(signupdetail)
+
+        }
+        }
+
+const navigateR=useNavigate()
 
     const handleChange=(e)=>{
         const valDAta={[e.target.name]:e.target.value}
@@ -40,7 +46,20 @@ const [newdata,setnewData]=useState([])
         setIsSignup(!isSignup)
         
     }
-    
+
+    const handleHodLogin=()=>{
+        const hodlLogdata=JSON.parse(localStorage.getItem("user"))
+        const hodFind=hodlLogdata.find((item)=>item.username ==data.username)
+        // console.log(hodFind)
+        console.log(data)
+        console.log(hodlLogdata)
+        if(hodFind){
+            navigateR("/hoddashbord")
+        }else{
+            alert("Please fill the correct data")
+        }
+    }
+
 
     
 
@@ -111,14 +130,14 @@ const [newdata,setnewData]=useState([])
                     
                     {/* {isSignup ?<Button onClick={handleLogin} sx={{ mt: 2 }} type='submit' variant="contained">LOG IN</Button>: <Button onClick={handleLogin} sx={{ mt: 2 }} type='submit' variant="contained">SIGN up</Button>} */}
 
-                    <Button  sx={{ mt: 2 }} type='submit' variant="contained">{isSignup ? "LOG IN":"SIGN UP"}</Button>
+                    <Button onClick={handleHodLogin} sx={{ mt: 2 }} type='submit' variant="contained">{isSignup ? "LOG IN":"SIGN UP"}</Button>
                     <Button  onClick={handleSwitch} sx={{ mt: 2 }} >{isSignup ? "SIGN UP":"LOG IN"}</Button>
 
                 </Box>
 
             </form>
             
-            <HodDashboard/>
+            {/* <HodDashboard/> */}
         </>
     )
 }

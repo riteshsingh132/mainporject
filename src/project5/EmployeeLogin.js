@@ -2,6 +2,7 @@ import { Button, FormControl, FormLabel, MenuItem, Select, TextField, Typography
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import ApplyLeave from './ApplyLeave'
+import { Outlet, useNavigate } from 'react-router'
 
 function EmployeeLogin() {
 
@@ -23,8 +24,9 @@ function EmployeeLogin() {
     const handleSubmit = (e) => {
         e.preventDefault()
         setNewEmpData([...newEmpData, empdata])
-        
-        localStorage.setItem("user1",JSON.stringify([...newEmpData, empdata]))
+
+        if(isSignup  && true){
+            localStorage.setItem("user1",JSON.stringify([...newEmpData, empdata]))
         setEmpData({
             firstname: "",
         lastname: "",
@@ -33,12 +35,15 @@ function EmployeeLogin() {
         username: "",
         password: "",
         })
+        }
         
     }
 
+    const navigateR=useNavigate()
+
     const handleChange = (e) => {
         const valDAta = { [e.target.name]: e.target.value }
-        console.log(valDAta)
+        // console.log(valDAta)
         setEmpData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
@@ -48,7 +53,19 @@ function EmployeeLogin() {
     }
 
     const handleLogin=()=>{
+        const logdata=JSON.parse(localStorage.getItem("user1")) 
+        // console.log(logdata[1].username)
+        const logFind=logdata.find((item)=>item.username == empdata.username)
+        console.log(logFind)
+        // console.log(empdata)
        
+            if(logFind){
+            
+                navigateR("/applyleave")
+        }else {
+
+            alert("Please fill the correct data")
+        }
     }
 
     return (
@@ -123,7 +140,8 @@ function EmployeeLogin() {
                 </Box>
 
             </form>
-            <ApplyLeave/>
+            <Outlet/>
+            {/* <ApplyLeave/> */}
         </>
     )
 }

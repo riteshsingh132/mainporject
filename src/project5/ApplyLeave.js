@@ -2,23 +2,25 @@ import { Box, Button, FormLabel, TextField, TextareaAutosize } from '@mui/materi
 import { margin } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import Dashbord from './Dashbord'
+import uuid from 'react-uuid';
 
 function ApplyLeave() {
+const [toggle,setToggle]=useState(false)
+  const [apprData,setApprData]=useState()
 
-  const [apprData,setApprData]=useState("")
   useEffect(()=>{
     const hodData=JSON.parse(localStorage.getItem("leavedata"))  
     
     console.log(hodData)
     console.log("testing")
     setApprData(hodData)
-  },[])
+  },[toggle])
 
   const [leave,setLeave]=useState({
     fromdate:"",
     todate:"",
     leavereason:"",
-    leavestatus:"Pending"
+    
   })
 
   const [data,setData]=useState([])
@@ -31,12 +33,12 @@ function ApplyLeave() {
 const handleSubmit=(e)=>{
   e.preventDefault()
   setData([...data,leave])
-  localStorage.setItem("leavedata",JSON.stringify([...data,leave]))
+  localStorage.setItem("leavedata",JSON.stringify([...apprData,{...leave,id:uuid()}]))
+  setToggle(!toggle)
   setLeave({
     fromdate:"",
     todate:"",
-    leavereason:""
-
+    leavereason:"Pending"
   })
 }
 
@@ -63,7 +65,9 @@ const handleCancel=()=>{
           <FormLabel sx={{ mb: 3 }}><p>Reason</p>
             <TextareaAutosize onChange={handleChange} minRows={3} style={{ width: "400px" }} name='leavereason' />
           </FormLabel>
+          <h2 onChange={handleChange}  style={{ width: "400px" }} name='leavestatus'></h2>
           
+
           <Box style={{ width: "75%", margin: " 0 auto", textAlign: "center" }}>
             <Button onClick={handleSubmit} size={"medium"} sx={{ mt: 2 }} type='submit' variant="contained">Submit</Button>
             <Button onClick={handleCancel} style={{ marginLeft: "15px" }} variant="outlined" size={"medium"} sx={{ mt: 2 }} >Cancel</Button>
@@ -72,7 +76,7 @@ const handleCancel=()=>{
         </Box>
       </Box>
     </form>
-    <Dashbord data={data}/>
+    <Dashbord toggle={toggle}/>
     </>
   )
 }

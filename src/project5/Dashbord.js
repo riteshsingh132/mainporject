@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-function Dashbord({ data }) {
+function Dashbord({ toggle }) {
 
-    console.log(data.fromdate)
+    // console.log(data.fromdate)
+
+    const [apldata,setaplData]=useState([])
+    useEffect(()=>{
+        // const btnapprovedata=JSON.parse(localStorage.getItem("leavestate"))
+        const leaveaplydata=JSON.parse(localStorage.getItem("leavedata"))
+        setaplData(leaveaplydata)
+    },[toggle])
+
+    console.log(apldata)
+    // console.log(btnapprovedata)
 
     return (
         <>
@@ -21,7 +31,7 @@ function Dashbord({ data }) {
     </div>
     <div className='container d-flex mb-5 justify-content-center col-12 flex-wrap' style={{border:"1px solid red"}}>
 
-            {data.map((item) => {
+            {apldata !==[] && apldata?.map((item) => {
                 return <div
 
                  className='container flex-direction-row m-1' style={{ border: "1px solid #ccc", width: "300px",borderRadius:"10px" }}>
@@ -31,7 +41,7 @@ function Dashbord({ data }) {
                     
                     <h5>Reason:<span>{item.leavereason}</span></h5>
                     <p>Status</p>
-                    <p>Pending</p>
+                    <p>{item.leavestatus}</p>
                 </div>
                
             })}
