@@ -22,10 +22,10 @@ function App() {
    
       {/* <Project2a/> */}
       {/* <Project2B/> */}
-      <Project3/>
+      {/* <Project3/> */}
     {/* <Formpract/> */}
     {/* <Project4/> */}
-    {/* <Mainproj5/> */}
+    <Mainproj5/>
     
   
  
