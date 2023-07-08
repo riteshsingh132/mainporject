@@ -5,8 +5,11 @@ import Navbar from '../../Navbar'
 function RootLayout() {
   return (
     <div>
-        {/* <Navbar/> */}
+
+        <Navbar/>
         <Outlet/>
+    
+
     </div>
   )
 }

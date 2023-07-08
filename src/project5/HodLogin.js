@@ -64,7 +64,7 @@ const navigateR=useNavigate()
     
 
     return (
-        <>
+        <div>
             <form onSubmit={handleSubmit}>
 
                 <Box borderRadius="15px" border={"0.25px solid #ccc"} padding={"40px"} display={"flex"} flexDirection={"column"} maxWidth={"550px"} margin={"100px auto"} boxShadow={"5px 5px 10px #ccc"} sx={{ ":hover": { boxShadow: "10px 10px 20px #ccc" } }}>
@@ -138,7 +138,7 @@ const navigateR=useNavigate()
             </form>
             
             {/* <HodDashboard/> */}
-        </>
+        </div>
     )
 }
 

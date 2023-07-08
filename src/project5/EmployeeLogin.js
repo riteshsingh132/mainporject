@@ -25,7 +25,7 @@ function EmployeeLogin() {
         e.preventDefault()
         setNewEmpData([...newEmpData, empdata])
 
-        if(isSignup  && true){
+        if(isSignup  == true){
             localStorage.setItem("user1",JSON.stringify([...newEmpData, empdata]))
         setEmpData({
             firstname: "",
@@ -36,6 +36,7 @@ function EmployeeLogin() {
         password: "",
         })
         }
+        console.log(isSignup)
         
     }
 
@@ -54,18 +55,19 @@ function EmployeeLogin() {
 
     const handleLogin=()=>{
         const logdata=JSON.parse(localStorage.getItem("user1")) 
-        // console.log(logdata[1].username)
+      
         const logFind=logdata.find((item)=>item.username == empdata.username)
         console.log(logFind)
-        // console.log(empdata)
        
-            if(logFind){
+       
+        localStorage.setItem("user1",JSON.stringify([...newEmpData, empdata]))
+        //     if(logFind){
             
-                navigateR("/applyleave")
-        }else {
+        //         navigateR("/applyleave")
+        // }else {
 
-            alert("Please fill the correct data")
-        }
+        //     alert("Please fill the correct data")
+        // }
     }
 
     return (
@@ -78,14 +80,16 @@ function EmployeeLogin() {
 
 
 
-                    {!isSignup ? <Box display={"flex"} gap={"25px"} maxWidth={"450px"}>
+                    {
+                    !isSignup ? <Box display={"flex"} gap={"25px"} maxWidth={"450px"}>
                         <FormLabel>Username
                             <TextField onChange={handleChange} size='small' placeholder='Enter username' margin='normal' name='username' value={empdata.username} sx={{ mb: 2 }} />
                         </FormLabel>
                         <FormLabel>Password
                             <TextField onChange={handleChange} type='password' size='small' placeholder='Enter Password' margin='normal' name='password' value={empdata.password} sx={{ mb: 2 }} />
                         </FormLabel>
-                    </Box> : <> <Box display={"flex"} gap={"25px"} maxWidth={"450px"}>
+                    </Box> : 
+                    <> <Box display={"flex"} gap={"25px"} maxWidth={"450px"}>
                         <FormLabel>First Name
                             <TextField onChange={handleChange} size='small' placeholder='Enter First Name' margin='normal' name='firstname' value={empdata.firstname} sx={{ mb: 2 }} />
                         </FormLabel>
@@ -132,9 +136,9 @@ function EmployeeLogin() {
                     </Box>
                     </>}
 
-                    {}
+                    
 
-                    <Button onClick={handleLogin} sx={{ mt: 2 }} type='submit' variant="contained">{isSignup ? "SIGN UP" : "LOG IN"}</Button>
+                    <Button onClick={handleLogin}  sx={{ mt: 2 }} type='submit' variant="contained">{isSignup ? "SIGN UP" : "LOG IN"}</Button>
                     <Button onClick={handleSwitch} sx={{ mt: 2 }} >{isSignup ? "LOG IN" : "SIGN UP"}</Button>
 
                 </Box>

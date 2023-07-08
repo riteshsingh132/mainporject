@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import ApplyLeave from './ApplyLeave'
+import { useNavigate } from 'react-router'
 
 function Dashbord({ toggle }) {
 
     // console.log(data.fromdate)
-
+    const navigateR=useNavigate()
     const [apldata,setaplData]=useState([])
     useEffect(()=>{
         // const btnapprovedata=JSON.parse(localStorage.getItem("leavestate"))
@@ -14,12 +16,18 @@ function Dashbord({ toggle }) {
     console.log(apldata)
     // console.log(btnapprovedata)
 
+    const applyLeaveHandle=()=>{
+        navigateR("/applyleave")
+    }
+
     return (
-        <>
+        
+        <div style={{marginTop:"100px"}}>
         
             
-         <div className='container d-flex mb-5 gap-4' style={{border:"1px solid red", textAlign:"center", margin:"0 auto"}} >
-
+            <h3>Welcome to the Employee Leave Portal</h3>
+        <button onClick={applyLeaveHandle}>Apply Leave</button>
+         <div className='container d-flex mt-1 mb-5 gap-4' style={{border:"1px solid red", textAlign:"center", margin:" 0 auto"}} >
         <div>
             <h4>10</h4>
             Total Leave
@@ -49,7 +57,7 @@ function Dashbord({ toggle }) {
             </div>
             
           
-        </>
+        </div>
     )
 }
 

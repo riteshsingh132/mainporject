@@ -7,14 +7,16 @@ function HodDashboard() {
   const [empname, setEmpname] = useState([])
   const [blogin, setBlogin] = useState([])
   const [toggle,stetoggle]=useState(false)
+  
 
+  console.log(apprData.leavestatus)
   useEffect(() => {
     const hodData = JSON.parse(localStorage.getItem("leavedata"))
     const hodData1 = JSON.parse(localStorage.getItem("user1"))
     const hodData2 = JSON.parse(localStorage.getItem("user"))
 
-    console.log(hodData1)
-    console.log("testing")
+    
+    
     setApprData(hodData)
     setEmpname(hodData1)
     setBlogin(hodData2)
@@ -28,13 +30,24 @@ function HodDashboard() {
           item.id===id
         )
       } )
- 
       localStorage.setItem("leavedata",JSON.stringify([...filterStatus,{...ritesh,leavestatus:"Approved"
+ 
       }]))
       stetoggle(!toggle)
+      
   }
 
   const handleReject = (id) => {
+    const filterStatus=apprData.filter((res)=>res.id!==id)
+      const ritesh= apprData.find((item)=>{
+        return (
+          item.id===id
+        )
+      } )
+      localStorage.setItem("leavedata",JSON.stringify([...filterStatus,{...ritesh,leavestatus:"Rejected"
+ 
+      }]))
+      stetoggle(!toggle)
     // setBossdata({
     //   aprovestatus: "Approve",
     //   rejectstate: "Rejected"
@@ -61,7 +74,7 @@ function HodDashboard() {
     })} */}
       <div className=' mb-5 d-flex' style={{ border: "1px solid #ccc" }}>
 
-        {/* <h4>Welcome Mr {blogin.map((r) => { return <> <span>{r.firstname} {r.lastname}</span></> })}</h4> */}
+        <h4>Welcome Mr {blogin.map((r) => { return <> <span>{r.firstname} {r.lastname}</span></> })}</h4>
 
       </div>
       <div className='container d-flex mb-5 justify-content-center col-12 flex-wrap gap-3 flex-direction-row' style={{ textAlign: "center", border: "1px solid red" }}>

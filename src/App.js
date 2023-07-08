@@ -9,17 +9,25 @@ import Project4 from "./project4/Home"
 import Mainproj5 from "./project5/Mainproj5";
 import { router } from "./project5/router/Router";
 import Main from "./prctice/Main";
+import Navbar from "./project5/Navbar";
+
 
 
 function App() {
+
   return (
-    <div>
+
+<div>
+  
+   
       {/* <Project2a/> */}
       {/* <Project2B/> */}
-      {/* <Project3/> */}
+      <Project3/>
     {/* <Formpract/> */}
     {/* <Project4/> */}
-    <Mainproj5/>
+    {/* <Mainproj5/> */}
+    
+  
  
     {/* <Main/> */}
     </div>
