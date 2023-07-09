@@ -10,11 +10,14 @@ import Mainproj5 from "./project5/Mainproj5";
 import { router } from "./project5/router/Router";
 import Main from "./prctice/Main";
 import Navbar from "./project5/Navbar";
+import { UserProvider } from "./project5/context/UserContext";
+
 
 
 
 function App() {
 
+  
   return (
 
 <div>
@@ -25,7 +28,12 @@ function App() {
       {/* <Project3/> */}
     {/* <Formpract/> */}
     {/* <Project4/> */}
+
+    <UserProvider>
     <Mainproj5/>
+
+    </UserProvider>
+
     
   
  

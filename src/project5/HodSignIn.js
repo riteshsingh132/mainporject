@@ -13,7 +13,7 @@ function HodSignIn() {
     })
   // console.log(empdata)
     const handleChange = (e) => {
-      const valDAta = { [e.target.name]: e.target.value }
+     
       // console.log(valDAta)
       setEmpData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -28,14 +28,14 @@ function HodSignIn() {
   // console.log(empdata)
       const logdata = JSON.parse(localStorage.getItem("user"))
       console.log(logdata)
-      const logFind = logdata.find((item)=>item.username==empdata.username && item.password &&empdata.password)
+      const logFind = logdata.find((item)=>item.username===empdata.username && item.password ===empdata.password)
       
       console.log(logFind)
   
       // localStorage.setItem("userdetails",JSON.stringify([...newEmpData, empdata]))
       if(logFind !== undefined){    
       // if(empdata.username===logdata.username){
-        navigateR("/hoddashbord")
+        navigateR("/hoddashbord",{state:{logFind}})
         console.log(logFind.firstname)
       }else {
             alert("Please fill the correct data")

@@ -1,15 +1,26 @@
 import { Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from './context/UserContext';
+
 
 function HodDashboard() {
+
+  const { state } = useContext(UserContext);
+  const { user } = state;
+
   
   const [apprData, setApprData] = useState([])
   const [empname, setEmpname] = useState([])
   const [blogin, setBlogin] = useState([])
   const [toggle,stetoggle]=useState(false)
   
+  const location = useLocation();
+  const logFind = location.state.logFind;
 
-  console.log(apprData.leavestatus)
+  // console.log(logFind)
+  // console.log(apprData.leavestatus)
   useEffect(() => {
     const hodData = JSON.parse(localStorage.getItem("leavedata"))
     const hodData1 = JSON.parse(localStorage.getItem("user1"))
@@ -59,7 +70,7 @@ function HodDashboard() {
   
 
   return (
-    <>
+    <div style={{marginTop:"100px"}}>
       {/* {apprData?.map((item)=>{
       return <>
       {empname.map((det)=>{
@@ -74,7 +85,8 @@ function HodDashboard() {
     })} */}
       <div className=' mb-5 d-flex' style={{ border: "1px solid #ccc" }}>
 
-        <h4>Welcome Mr {blogin.map((r) => { return <> <span>{r.firstname} {r.lastname}</span></> })}</h4>
+        {/* <h4>Welcome Mr {blogin.map((r) => { return <> <span>{r.firstname} {r.lastname}</span></> })}</h4> */}
+        <h4>Welcome Mr {logFind.firstname} {logFind.lastname}</h4>
 
       </div>
       <div className='container d-flex mb-5 justify-content-center col-12 flex-wrap gap-3 flex-direction-row' style={{ textAlign: "center", border: "1px solid red" }}>
@@ -82,13 +94,13 @@ function HodDashboard() {
         return <>
 
             <div style={{ border: "1px solid #ccc", padding: "5px 15px", borderRadius: "10px" }}>
-              <h2>Emp Name:
-                {empname.map((det, i) => {
+              <h2>Emp Name:<span>{item.apEmpName}</span>
+                {/* {empname.map((det, i) => {
                   return <>
 
                     <span>{det.firstname} {det.lastname}</span>
                   </>
-                })}
+                })} */}
               </h2>
               <h5>Reason: {item.leavereason}</h5>
               <h5>from :{item.fromdate}</h5>
@@ -102,7 +114,7 @@ function HodDashboard() {
       </div>
 
 
-    </>
+    </div>
   )
 }
 

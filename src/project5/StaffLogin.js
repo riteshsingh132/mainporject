@@ -1,10 +1,32 @@
 import { Box, Button, FormLabel, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useContext } from 'react';
+import { UserContext } from '../project5/context/UserContext';
+
 
 function StaffLogin() {
 
   const navigateR = useNavigate()
+
+  const { dispatch } = useContext(UserContext);
+
+  const handleSubmit1=(e)=>{
+    e.preventDefault();
+    // Assuming you have the staff data to pass
+    const staffData = {
+      // ...
+    };
+    // Dispatch an action to set the user data
+    dispatch({ type: 'SET_USER', payload: staffData });
+
+    // Navigate to the HodDashbord component
+ 
+
+  }
+
+//help
+
 
   const [empdata, setEmpData] = useState({
     username: "",
@@ -33,13 +55,15 @@ function StaffLogin() {
     // const logFind = logdata.find((item) =>item.id===logdata.id )
     const logFind = logdata.find((item) =>item.username===empdata.username && item.password ===empdata.password )
     
-    console.log(logFind.firstname)
+    // console.log(logFind.firstname)
+
+    const staffData = logFind.firstname;
 
     // localStorage.setItem("userdetails",JSON.stringify([...newEmpData, empdata]))
     if(logFind !==undefined){    
     // if(empdata.username===logdata.username){
+      dispatch({ type: 'SET_USER', payload: staffData });
       navigateR("/dashbord")
-      
 
     }else {
           alert("Please fill the correct data")
