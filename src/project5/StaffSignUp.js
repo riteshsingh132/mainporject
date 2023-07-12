@@ -77,6 +77,10 @@ function StaffSignUp() {
                 <Box borderRadius="15px" border={"0.25px solid #ccc"} padding={"40px"} display={"flex"} flexDirection={"column"} maxWidth={"550px"} margin={"100px auto"} boxShadow={"5px 5px 10px #ccc"} sx={{ ":hover": { boxShadow: "10px 10px 20px #ccc" } }}>
 
                     <Typography sx={{ mb: 3 }}>Employee</Typography>
+                    <FormLabel>Emp Name
+                            <input type='radio' onChange={handleChange} size='small' placeholder='Enter Last Name' margin='normal' name='lastname' value={empdata1.lastname} sx={{ mb: 2 }} />
+                        </FormLabel>
+
 
                     <> <Box display={"flex"} gap={"25px"} maxWidth={"450px"}>
                         <FormLabel>First Name
@@ -101,10 +105,7 @@ function StaffSignUp() {
                                 <Select size='small'
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-
-                                    sx={{ mt: 2, mb: 2 }}
-
-                                >
+                                    sx={{ mt: 2, mb: 2 }}>
                                     <MenuItem value={"0"}>Sales</MenuItem>
                                     <MenuItem value={"1"}>Finace</MenuItem>
                                     <MenuItem value={"2"}>Admin</MenuItem>

@@ -30,10 +30,10 @@ function Home() {
 
     return (
         <>
-            <div className='container col-6 mt-5 pb-3' style={{ border: "1px solid #ccc" }}>
+            <div className='container col-6 mt-5 pb-3 ' style={{ border: "1px solid #ccc" }}>
 
                 <Form >
-                    <Form.Group className="mb-3 d-flex justify-content-between" controlId="formBasicText">
+                    <Form.Group className="mb-3 d-flex justify-content-between gap-3" controlId="formBasicText">
                         <div style={{ width: "300px" }}>
                             <Form.Label>First Name</Form.Label>
                             <Form.Control type="text" name='fname' placeholder='Enter Your First Name'/>
@@ -43,17 +43,17 @@ function Home() {
                             <Form.Control type="text" name='lname' placeholder='Enter Your Last Name' />
                         </div>
                     </Form.Group>
-                    <Form.Group controlId="exampleForm.ControlSelect1" className='mb-3 d-flex justify-content-between'>
+                    <Form.Group controlId="exampleForm.ControlSelect1 gap-3" className='mb-3 d-flex justify-content-between'>
                       
                        <div style={{width:"300px"}}>
                        <Form.Label>How Should we Contact You?</Form.Label>
                         <Form.Control as="select" onChange={(e)=>handlechange(e)} name='selection' type='text'>
-                            <option type="email" value={"0"}>selcet option</option>
+                            <option type="text" value={"0"}>selcet option</option>
                             <option type="email" value={"1"}>Email</option>
                             <option type="number" value={"2"}>Phone</option>  
                         </Form.Control>
                        </div>
-                      {toggle ? <div style={{width:"300px"}}>                        
+                      {toggle ? <div style={{width:"300px",gap:3}}>                        
                             <Form.Label>{data}</Form.Label>
                             <Form.Control type="text" />
                         </div> :" "}
@@ -61,19 +61,7 @@ function Home() {
                 </Form>
 
 
-                {/* <Dropdown>
-                    <p>How Should we Contact You?</p>
-
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Dropdown Button
-                    </Dropdown.Toggle>
-                    
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Email</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Phone</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown> */}
+              
             </div>
         </>
     )

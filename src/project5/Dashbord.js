@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ApplyLeave from './ApplyLeave'
 import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { UserContext } from './context/UserContext';
 function Dashbord({ toggle }) {
 
 
     const location = useLocation();
     // const logFind = location.state.logFind;
+    const { state } = useContext(UserContext);
+    const { user } = state;
+
 
     const navigateR = useNavigate()
     const [apldata, setaplData] = useState([])
@@ -28,10 +33,13 @@ function Dashbord({ toggle }) {
 
         <div style={{ marginTop: "100px" }}>
 
+            <div style={{ padding: "5px 0", border: "1px solid #ccc" }}>
 
-            <h3>Welcome to the Employee Leave Portal</h3>
-            <button onClick={applyLeaveHandle}>Apply Leave</button>
-            <div className='container d-flex mt-1 mb-5 gap-4' style={{ border: "1px solid red", textAlign: "center", margin: " 0 auto" }} >
+                <h3 style={{ color: "blueviolet" }}>Welcome Mr:{user}</h3>
+                <Button onClick={applyLeaveHandle} style={{ margin: "20px 20px" }} variant='contained'>ApplyLeave</Button>
+
+            </div>
+            <div className='container d-flex mt-1 mb-5 gap-4' style={{ textAlign: "center", margin: " 0 auto" }} >
                 <div>
                     <h4>10</h4>
                     Total Leave
@@ -41,7 +49,7 @@ function Dashbord({ toggle }) {
                 <div><h4>3</h4>
                     Cancled</div>
             </div>
-            <div className='container d-flex mb-5 justify-content-center col-12 flex-wrap' style={{ border: "1px solid red" }}>
+            <div className='container d-flex mb-5 justify-content-center col-12 flex-wrap' >
 
                 {apldata !== [] && apldata?.map((item) => {
                     return <div

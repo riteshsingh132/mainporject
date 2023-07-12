@@ -23,8 +23,8 @@ export const router=createBrowserRouter(
             <Route path='hodlogin' element={<HodSignIn/>} ></Route>
             <Route path='hodsignup' element={<HodSignUp/>} ></Route>
             <Route path='applyleave' element={<ApplyLeave />} />
-            <Route path='dashbord' element={<Dashbord />} />
             <Route path='hoddashbord' element={<HodDashboard />} />
+            <Route path='dashbord' element={<Dashbord />} />
         </Route>
     )
 )

@@ -57,13 +57,13 @@ function StaffLogin() {
     
     // console.log(logFind.firstname)
 
-    const staffData = logFind.firstname;
+    const staffData = logFind.firstname +" "+logFind.lastname;
 
     // localStorage.setItem("userdetails",JSON.stringify([...newEmpData, empdata]))
     if(logFind !==undefined){    
     // if(empdata.username===logdata.username){
       dispatch({ type: 'SET_USER', payload: staffData });
-      navigateR("/dashbord")
+      navigateR("/dashbord",{state:{logFind}})
 
     }else {
           alert("Please fill the correct data")
@@ -85,7 +85,7 @@ function StaffLogin() {
         
           <Box display={"flex"} gap={"25px"} maxWidth={"450px"}>
             <FormLabel>Username
-              <TextField onChange={handleChange} size='small' placeholder='Enter username' margin='normal' name='username' value={empdata.username} sx={{ mb: 2 }} />
+              <TextField onChange={handleChange} size='small' placeholder='Enter username' margin='normal'  name='username' value={empdata.username} sx={{ mb: 2 }} />
             </FormLabel>
 
             <FormLabel>Password

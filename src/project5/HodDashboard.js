@@ -8,7 +8,7 @@ import { UserContext } from './context/UserContext';
 function HodDashboard() {
 
   const { state } = useContext(UserContext);
-  const { user } = state;
+  
 
   
   const [apprData, setApprData] = useState([])
@@ -19,15 +19,15 @@ function HodDashboard() {
   const location = useLocation();
   const logFind = location.state.logFind;
 
-  // console.log(logFind)
+  
+
+  console.log(logFind)
   // console.log(apprData.leavestatus)
   useEffect(() => {
     const hodData = JSON.parse(localStorage.getItem("leavedata"))
     const hodData1 = JSON.parse(localStorage.getItem("user1"))
     const hodData2 = JSON.parse(localStorage.getItem("user"))
 
-    
-    
     setApprData(hodData)
     setEmpname(hodData1)
     setBlogin(hodData2)
@@ -89,7 +89,7 @@ function HodDashboard() {
         <h4>Welcome Mr {logFind.firstname} {logFind.lastname}</h4>
 
       </div>
-      <div className='container d-flex mb-5 justify-content-center col-12 flex-wrap gap-3 flex-direction-row' style={{ textAlign: "center", border: "1px solid red" }}>
+      <div className='container d-flex mb-5 justify-content-center col-12 flex-wrap gap-3 flex-direction-row' style={{ textAlign: "center" }}>
       {apprData !==[] && apprData?.map((item) => {
         return <>
 

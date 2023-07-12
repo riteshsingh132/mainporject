@@ -18,6 +18,7 @@ function ApplyLeave() {
   const [toggle, setToggle] = useState(false)
   const [apprData, setApprData] = useState([])
 
+
   const [leave, setLeave] = useState({
     apEmpName: user,
     fromdate: "",
@@ -27,9 +28,7 @@ function ApplyLeave() {
     leaveDays: 0,
 
   })
-
-
-
+  
   const fromdateobj = new Date(leave.fromdate)
   const toDateobj = new Date(leave.todate)
   const diffTime = Math.abs(fromdateobj - toDateobj)
@@ -122,7 +121,7 @@ let leaveshow;
             <FormLabel sx={{ ml: 2 }}><p>To</p>
               <TextField onChange={handleChange} size='small' type='date' sx={{ mb: 2, }} name='todate' value={leave.todate} />
             </FormLabel>
-            <div onChange={handleChange} type='number' name='leaveDays' value={diffDays} > {leaveshow}</div>
+            <div onChange={handleChange} style={{margin:"10px 0"}} type='number' name='leaveDays' value={diffDays} >Count Of Leave: {leaveshow}</div>
             <FormLabel sx={{ mb: 3 }}><p>Reason</p>
               <TextareaAutosize onChange={handleChange} minRows={3} style={{ width: "400px" }} name='leavereason' value={leave.leavereason} />
             </FormLabel>

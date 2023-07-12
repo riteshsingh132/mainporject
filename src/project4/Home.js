@@ -28,12 +28,14 @@ function Home() {
 
   
     const handleInputChange1 = (e) => {
-        const value = e.target.value;
-        if (value > 100) {
-            setErrMsg("Value can not be grater than 100")
-        }else if(value <= 100){
+        const value = e.target.value
+        console.log(value)
+        if (value <= 100) {
             setInputChart1(value);
             setInputChart2(100 - value);
+            setErrMsg("")
+        }else if(value > 100){
+            setErrMsg("Value can not be grater than 100")
         }
       };
       const handleInputChange2 = (e) => {
@@ -47,10 +49,11 @@ function Home() {
       };
     
       const createChart=()=>{
-        setChartOpt((prev)=>({
+        setChartOpt((prev)=>({ 
             ...prev,
             series:[Number(inputchart1),Number(inputchart2)]
         }))
+        setErrMsg("")
       }
     
     return (
@@ -63,11 +66,12 @@ function Home() {
                         <Form.Group className="mb-3">
                             <div style={{ width: "200px" }}>
                                 <Form.Label>Group A</Form.Label>
-                                <Form.Control onChange={handleInputChange1} value={inputchart1} type="number" name='boxA'/>
+                                <Form.Control onChange={handleInputChange1} value={inputchart1}  type="number" name='boxA'/>
                             </div>
                             <div style={{ width: "200px" }}>
                                 <Form.Label>Group B</Form.Label>
                                 <Form.Control onChange={handleInputChange2} value={inputchart2} type="number" name='boxB' />
+                                <div>{errmsg}</div>
                             </div>
                         </Form.Group>
                         <Button onClick={createChart} variant="contained">Create Chart</Button>
