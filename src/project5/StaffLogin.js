@@ -11,7 +11,7 @@ function StaffLogin() {
 
   const { dispatch } = useContext(UserContext);
 
-  const handleSubmit1=(e)=>{
+  const handleSubmit1 = (e) => {
     e.preventDefault();
     // Assuming you have the staff data to pass
     const staffData = {
@@ -21,11 +21,11 @@ function StaffLogin() {
     dispatch({ type: 'SET_USER', payload: staffData });
 
     // Navigate to the HodDashbord component
- 
+
 
   }
 
-//help
+  //help
 
 
   const [empdata, setEmpData] = useState({
@@ -34,8 +34,8 @@ function StaffLogin() {
   })
 
   // for use the name in leave  i will send the props to get the uer name who is login
-  const [loginName,setLoginName]=useState("")
-// console.log(empdata)
+  const [loginName, setLoginName] = useState("")
+  // console.log(empdata)
   const handleChange = (e) => {
     const valDAta = { [e.target.name]: e.target.value }
     // console.log(valDAta)
@@ -50,24 +50,25 @@ function StaffLogin() {
     e.preventDefault()
     setNewEmpData([...newEmpData, empdata])
 
-    const logdata = JSON.parse(localStorage.getItem("user1"))
-    
+    const logdata = JSON.parse(localStorage.getItem("user1")) || []
     // const logFind = logdata.find((item) =>item.id===logdata.id )
-    const logFind = logdata.find((item) =>item.username===empdata.username && item.password ===empdata.password )
-    
+
+    const logFind = logdata.find((item) => item.username === empdata.username && item.password === empdata.password)
+
     // console.log(logFind.firstname)
 
-    const staffData = logFind.firstname +" "+logFind.lastname;
 
     // localStorage.setItem("userdetails",JSON.stringify([...newEmpData, empdata]))
-    if(logFind !==undefined){    
-    // if(empdata.username===logdata.username){
+    if (logFind !== undefined) {
+      // logdata me data agar black milega to logfind undefined hoga isliye as isko ocndition me liye hai
+      const staffData = logFind.firstname + " " + logFind.lastname;
+      // if(empdata.username===logdata.username){
       dispatch({ type: 'SET_USER', payload: staffData });
-      navigateR("/dashbord",{state:{logFind}})
+      navigateR("/dashbord", { state: { logFind } })
 
-    }else {
-          alert("Please fill the correct data")
-          
+    } else {
+      alert("You are not Registered")
+
     }
   }
 
@@ -82,10 +83,10 @@ function StaffLogin() {
       <form onSubmit={handleSubmit}>
 
         <Box borderRadius="15px" border={"0.25px solid #ccc"} padding={"40px"} display={"flex"} flexDirection={"column"} maxWidth={"550px"} margin={"100px auto"} boxShadow={"5px 5px 10px #ccc"} sx={{ ":hover": { boxShadow: "10px 10px 20px #ccc" } }}>
-        
+
           <Box display={"flex"} gap={"25px"} maxWidth={"450px"}>
             <FormLabel>Username
-              <TextField onChange={handleChange} size='small' placeholder='Enter username' margin='normal'  name='username' value={empdata.username} sx={{ mb: 2 }} />
+              <TextField onChange={handleChange} size='small' placeholder='Enter username' margin='normal' name='username' value={empdata.username} sx={{ mb: 2 }} />
             </FormLabel>
 
             <FormLabel>Password

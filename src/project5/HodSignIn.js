@@ -26,9 +26,9 @@ function HodSignIn() {
       e.preventDefault()
       setNewEmpData([...newEmpData, empdata])
   // console.log(empdata)
-      const logdata = JSON.parse(localStorage.getItem("user"))
+      const logdata = JSON.parse(localStorage.getItem("user")) ||[]
       console.log(logdata)
-      const logFind = logdata.find((item)=>item.username===empdata.username && item.password ===empdata.password)
+      const logFind = logdata.find((item)=>item.username===empdata.username && item.password ===empdata.password) 
       
       console.log(logFind)
   
