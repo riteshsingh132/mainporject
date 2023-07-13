@@ -14,11 +14,13 @@ function HodDashboard() {
   const [apprData, setApprData] = useState([])
   const [empname, setEmpname] = useState([])
   const [blogin, setBlogin] = useState([])
-  const [toggle,stetoggle]=useState(false)
+  const [toggle,stetoggle]=useState(true)
   
   const location = useLocation();
   const logFind = location.state.logFind;
 
+  const [leaveCount1,setLeaveCount1]=useState(0)
+  const [leaveCount2,setLeaveCount2]=useState(0)
   
 
   console.log(logFind)
@@ -34,6 +36,8 @@ function HodDashboard() {
   }, [toggle])
   console.log(apprData)
 
+  
+
   const handleaprove = (id) => {
     const filterStatus=apprData.filter((res)=>res.id!==id)
       const ritesh= apprData.find((item)=>{
@@ -41,10 +45,11 @@ function HodDashboard() {
           item.id===id
         )
       } )
-      localStorage.setItem("leavedata",JSON.stringify([...filterStatus,{...ritesh,leavestatus:"Approved"
+      localStorage.setItem("leavedata",JSON.stringify([...filterStatus,{...ritesh,leavestatus:"Approved",leavestatus1:""
  
       }]))
-      stetoggle(!toggle)
+      stetoggle(true)
+     alert("Leave" + apprData.leavestatus )
       
   }
 
@@ -55,16 +60,18 @@ function HodDashboard() {
           item.id===id
         )
       } )
-      localStorage.setItem("leavedata",JSON.stringify([...filterStatus,{...ritesh,leavestatus:"Rejected"
+      localStorage.setItem("leavedata",JSON.stringify([...filterStatus,{...ritesh,leavestatus1:"Rejected",leavestatus:""
  
       }]))
-      stetoggle(!toggle)
+      stetoggle(false)
     // setBossdata({
     //   aprovestatus: "Approve",
     //   rejectstate: "Rejected"
     // })
     // localStorage.setItem("leavestate", JSON.stringify(bossdata))
     console.log(id)
+   
+
   }
 
   
@@ -105,7 +112,8 @@ function HodDashboard() {
               <h5>Reason: {item.leavereason}</h5>
               <h5>from :{item.fromdate}</h5>
               <h5>To {item.todate}</h5>
-              <Button onClick={()=>handleaprove(item.id)}  variant="contained" sx={{ background: "green", color: "white" }}>{item.leavestatus}</Button>
+              
+              <Button onClick={()=>handleaprove(item.id)}  variant="contained" sx={{ background: "green", color: "white" }}>Approve</Button>
               <Button onClick={()=>handleReject(item.id)} variant="contained" sx={{ background: "red", color: "white" }}>Reject</Button>
             </div>
 

@@ -16,12 +16,12 @@ function StaffSignUp() {
         password: "",
     })
 
-    const navigateR=useNavigate()
+    const navigateR = useNavigate()
 
     const [newEmpData1, setNewEmpData1] = useState([])
     console.log(newEmpData1)
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
 
         e.preventDefault()
     }
@@ -29,24 +29,24 @@ function StaffSignUp() {
     const handleLogin = (e) => {
         setNewEmpData1([...newEmpData1, empdata1])
 
-        if (empdata1.firstname == ""){
+        if (empdata1.firstname == "") {
             alert("Please filld First Name")
-            
-        }else if(empdata1.lastname==""){
+
+        } else if (empdata1.lastname == "") {
             alert("Please fill the last name")
-            
-        }else if(empdata1.email ==""){
+
+        } else if (empdata1.email == "") {
             alert("Please fill the correct email")
-            
-        }else if(empdata1.contact==""){
-            
+
+        } else if (empdata1.contact == "") {
+
             alert("Please fill the correct email")
-        }else if(empdata1.username==""){
+        } else if (empdata1.username == "") {
             alert("Please fill the correct email")
-            
-        }else if(empdata1.password==""){
+
+        } else if (empdata1.password == "") {
             alert("Please fill the passrowd")
-        }else{
+        } else {
             localStorage.setItem("user1", JSON.stringify([...newEmpData1, empdata1]))
             setEmpData1({
                 firstname: "",
@@ -58,14 +58,14 @@ function StaffSignUp() {
 
             })
         }
-        }
-        const handleChange = (e) => {
-            const valDAta = { [e.target.name]: e.target.value }
-            // console.log(valDAta)
+    }
+    const handleChange = (e) => {
+        const valDAta = { [e.target.name]: e.target.value }
+        // console.log(valDAta)
         setEmpData1((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    const handleClick=()=>{
+    const handleClick = () => {
         navigateR("/emplogin")
     }
 
@@ -75,11 +75,20 @@ function StaffSignUp() {
             <form onSubmit={handleSubmit}>
 
                 <Box borderRadius="15px" border={"0.25px solid #ccc"} padding={"40px"} display={"flex"} flexDirection={"column"} maxWidth={"550px"} margin={"100px auto"} boxShadow={"5px 5px 10px #ccc"} sx={{ ":hover": { boxShadow: "10px 10px 20px #ccc" } }}>
+                <div style={{gap:"10px"}} className='d-flex'>
+                    <div>
+                    <FormLabel>Employee 
+                        <input style={{margin:"0 10px"}} type='radio'  onClick={()=>navigateR("/staffsignup")} size='small' placeholder='Enter Last Name' value="1" margin='normal'   sx={{ mb: 2 }} />
+                    </FormLabel>
+                    </div>
+                    
+                    <div>
+                    <FormLabel >HOD
+                        <input style={{margin:"0 10px"}} type='radio' onClick={()=>navigateR("/staffsignup")} size='small' placeholder='Enter Last Name' value="2" margin='normal'  sx={{ mb: 2 }} />
+                    </FormLabel>
+                    </div>
 
-                    <Typography sx={{ mb: 3 }}>Employee</Typography>
-                    <FormLabel>Emp Name
-                            <input type='radio' onChange={handleChange} size='small' placeholder='Enter Last Name' margin='normal' name='lastname' value={empdata1.lastname} sx={{ mb: 2 }} />
-                        </FormLabel>
+                </div>
 
 
                     <> <Box display={"flex"} gap={"25px"} maxWidth={"450px"}>
@@ -126,7 +135,7 @@ function StaffSignUp() {
                         </Box>
                     </>
 
-                    <Button onClick={()=>handleLogin(empdata1.id)} sx={{ mt: 2 }} type='submit' variant="contained">SIGN UP</Button>
+                    <Button onClick={() => handleLogin(empdata1.id)} sx={{ mt: 2 }} type='submit' variant="contained">SIGN UP</Button>
                     <Button onClick={handleClick} sx={{ mt: 2 }} >LOG IN</Button>
 
                 </Box>
@@ -137,7 +146,7 @@ function StaffSignUp() {
 
         </>
     )
-    
+
 }
-    
-    export default StaffSignUp
+
+export default StaffSignUp

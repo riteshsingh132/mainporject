@@ -46,7 +46,6 @@ function StaffLogin() {
   const [newEmpData, setNewEmpData] = useState([])
 
   const handleSubmit = (e) => {
-
     e.preventDefault()
     setNewEmpData([...newEmpData, empdata])
 
